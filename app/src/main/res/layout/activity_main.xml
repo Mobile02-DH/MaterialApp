@@ -51,10 +51,12 @@
 		android:layout_height="match_parent"
 		app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-		<TextView
+		<android.support.v7.widget.RecyclerView
+			android:id="@+id/lstFilmes"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:text="texto teste"/>
+			android:scrollbars="vertical"
+			tools:listitem="@layout/filme_item"/>
 
 	</android.support.v4.widget.NestedScrollView>
 
@@ -68,4 +70,5 @@
 		app:layout_anchor="@id/main.appbar"
 		app:layout_anchorGravity="bottom|right|end"
 		/>
-	</android.support.design.widget.CoordinatorLayout>
+
+</android.support.design.widget.CoordinatorLayout>
