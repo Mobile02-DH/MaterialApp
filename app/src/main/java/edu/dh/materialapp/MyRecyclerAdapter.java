@@ -11,9 +11,7 @@ import java.util.ArrayList;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder>{
 
-	private final ArrayList<FilmeModelo> filmeData = GeradorFilmes.gerarFilmes(20);
-
-	private ClickInterface clickListenner;
+	private final ArrayList<FilmeModelo> filmeData = GeradorFilmes.gerarFilmes(20, "Filme ");
 
 	@NonNull
 	@Override
@@ -32,22 +30,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 		holder.txtTitulo.setText(filme.getTitulo());
 
 		holder.itemView.setTag(filme);
-
-		holder.itemView.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				clickListenner.onItemClick(filme);
-			}
-		});
 	}
 
 	@Override
 	public int getItemCount() {
 		return filmeData.size();
-	}
-
-	public void setClickListenner(ClickInterface clickListenner) {
-		this.clickListenner = clickListenner;
 	}
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -58,5 +45,4 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
 			txtTitulo = itemView.findViewById(R.id.txtTitulo);
 		}
 	}
-
 }

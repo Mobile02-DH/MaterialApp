@@ -22,8 +22,7 @@
 			app:contentScrim="?attr/colorPrimary"
 			app:expandedTitleMarginEnd="64dp"
 			app:expandedTitleMarginStart="48dp"
-			app:layout_scrollFlags="scroll|exitUntilCollapsed"
-			app:title="@string/app_name">
+			app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
 			<ImageView
 				android:id="@+id/main.backdrop"
@@ -39,26 +38,25 @@
 				android:id="@+id/main.toolbar"
 				android:layout_width="match_parent"
 				android:layout_height="?attr/actionBarSize"
-				app:layout_collapseMode="pin"
-				app:title="Test" />
+				app:layout_collapseMode="pin"/>
+
+			<android.support.design.widget.TabLayout
+				android:id="@+id/tabs"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_gravity="bottom"
+				app:tabMode="fixed"
+				app:tabGravity="fill"/>
 
 		</android.support.design.widget.CollapsingToolbarLayout>
 
 	</android.support.design.widget.AppBarLayout>
 
-	<android.support.v4.widget.NestedScrollView
+	<android.support.v4.view.ViewPager
+		android:id="@+id/viewpager"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-		<android.support.v7.widget.RecyclerView
-			android:id="@+id/lstFilmes"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:scrollbars="vertical"
-			tools:listitem="@layout/filme_item"/>
-
-	</android.support.v4.widget.NestedScrollView>
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
 	<android.support.design.widget.FloatingActionButton
@@ -67,7 +65,7 @@
 		android:layout_width="wrap_content"
 		android:layout_margin="@dimen/activity_horizontal_margin"
 		android:src="@android:drawable/btn_star_big_on"
-		app:layout_anchor="@id/main.appbar"
+		app:layout_anchor="@id/viewpager"
 		app:layout_anchorGravity="bottom|right|end"
 		/>
 

@@ -1,8 +1,6 @@
 package edu.dh.materialapp;
 
-import java.io.Serializable;
-
-public class FilmeModelo implements Serializable {
+public class FilmeModelo {
 
 	private String titulo;
 

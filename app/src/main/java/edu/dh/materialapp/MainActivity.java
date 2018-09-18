@@ -1,41 +1,37 @@
 package edu.dh.materialapp;
 
-import android.content.Intent;
-import android.os.Parcelable;
+import android.net.Uri;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public class MainActivity extends AppCompatActivity implements ClickInterface{
-
-	MyRecyclerAdapter recyclerAdapter = new MyRecyclerAdapter();
-
+public class MainActivity extends AppCompatActivity implements MainFragment.OnFragmentInteractionListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-
-		criarRecyclerView();
+		inicializarLayout();
 	}
 
-	public void criarRecyclerView(){
-		RecyclerView listaDeFilmes = findViewById(R.id.lstFilmes);
-		listaDeFilmes.setHasFixedSize(true);
+	public void inicializarLayout(){
+		ViewPager viewPager = findViewById(R.id.viewpager);
+		TabLayout tabs = findViewById(R.id.tabs);
 
-		LinearLayoutManager mLinearLayout = new LinearLayoutManager(this);
-		listaDeFilmes.setLayoutManager(mLinearLayout);
-		recyclerAdapter.setClickListenner(this);
-		listaDeFilmes.setAdapter(recyclerAdapter);
+		MyFragmentPagerAdapter pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+		pagerAdapter.setAbas(GeradorFilmes.gerarAbas(5, "Categoria"));
+
+
+		viewPager.setAdapter(pagerAdapter);
+		tabs.setupWithViewPager(viewPager);
+
 	}
-
 
 	@Override
-	public void onItemClick(FilmeModelo filme) {
-		Intent intent = new Intent(this, DetailActivity.class);
-		intent.putExtra("filme", filme);
+	public void onFragmentInteraction(Uri uri) {
 
-		startActivity(intent);
 	}
 }
